@@ -17,6 +17,11 @@ public class ViewController {
         return "login";
     }
 
+    @GetMapping("/join")
+    public String joinPage() {
+        return "join";
+    }
+
     @GetMapping("/dashboard")
     @UserAuthorize
     public String dashboardPage(@AuthenticationPrincipal User user, Model model) {

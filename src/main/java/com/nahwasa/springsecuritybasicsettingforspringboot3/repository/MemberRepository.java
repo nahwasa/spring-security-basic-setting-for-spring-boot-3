@@ -3,5 +3,9 @@ package com.nahwasa.springsecuritybasicsettingforspringboot3.repository;
 import com.nahwasa.springsecuritybasicsettingforspringboot3.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemberRepository extends JpaRepository<Member, String> {
+import java.util.Optional;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    Optional<Member> findByUserid(String userId);
 }

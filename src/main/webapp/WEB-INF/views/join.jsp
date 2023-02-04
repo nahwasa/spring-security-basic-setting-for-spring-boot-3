@@ -13,11 +13,8 @@
 
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="/login-process">
-        <p class="text-center">
-            <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
-        </p>
-        <h2 class="form-signin-heading text-center mb-5">nahwasa.com</h2>
+    <form class="form-signin" id='join_form'>
+        <h2 class="form-signin-heading text-center mb-5">회원가입!</h2>
 
         <p>
             <label for="username" class="sr-only">아이디</label>
@@ -27,12 +24,29 @@
             <label for="password" class="sr-only">비밀번호</label>
             <input type="password" id="password" name="pw" class="form-control" placeholder="비밀번호" required="">
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
     </form>
 
-    <form class="form-signin" method="get" action="/view/join">
-        <button class="btn btn-lg btn-warning btn-block" type="submit">회원가입하기</button>
-    </form>
+    <script>
+        const form = document.getElementById('join_form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const param = JSON.stringify(Object.fromEntries(data));
+
+            fetch('/auth/join', {
+                method: 'POST',
+                body: param,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.status!=200 ? alert("회원가입 실패") : alert("회원가입 성공"))
+            .catch(error => console.log(error))
+        });
+    </script>
 </div>
 </body>
 </html>
