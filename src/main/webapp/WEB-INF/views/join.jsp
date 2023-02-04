@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>로그인</title>
+    <title>회원가입</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
 </head>
@@ -43,7 +43,15 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.status!=200 ? alert("회원가입 실패") : alert("회원가입 성공"))
+            .then(response => {
+                debugger;
+                if (response.status == 200) {
+                    window.location.href = '/view/login';
+                    alert("회원가입 성공")
+                } else {
+                    alert("회원가입 실패")
+                }
+            })
             .catch(error => console.log(error))
         });
     </script>
