@@ -13,20 +13,18 @@
 
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="/login">
-        <h3 class="form-signin-heading text-center mb-5">nahwasa.com</h3>
-        <h3 class="overview-normalize">접속 아이디</h3>
-        <p>
-            ${loginId}
-        </p>
-        <hr/>
-        <h3 class="overview-normalize">역할</h3>
-        <p>
-            ${loginRoles}
-        </p>
-        <form method="post" action="/logout">
-            <button class="btn btn-sm btn-danger btn-block" type="submit">로그아웃</button>
-        </form>
+    <h3 class="form-signin-heading text-center mb-5">nahwasa.com</h3>
+    <h3 class="overview-normalize">접속 아이디</h3>
+    <p>
+        ${loginId}
+    </p>
+    <hr/>
+    <h3 class="overview-normalize">역할</h3>
+    <p>
+        ${loginRoles}
+    </p>
+    <form method="post" action="/logout">
+        <button class="btn btn-sm btn-danger btn-block" type="submit">로그아웃</button>
     </form>
 </div>
 </body>
