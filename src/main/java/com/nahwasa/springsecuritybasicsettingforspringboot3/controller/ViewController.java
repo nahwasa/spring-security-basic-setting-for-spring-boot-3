@@ -1,5 +1,6 @@
 package com.nahwasa.springsecuritybasicsettingforspringboot3.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class ViewController {
     }
 
     @GetMapping("/dashboard")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public String dashboardPage(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("loginId", user.getUsername());
         model.addAttribute("loginRoles", user.getAuthorities());
