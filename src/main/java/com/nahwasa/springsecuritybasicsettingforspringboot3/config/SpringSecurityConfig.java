@@ -1,5 +1,6 @@
 package com.nahwasa.springsecuritybasicsettingforspringboot3.config;
 
+import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,9 +15,18 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable()
                 .authorizeHttpRequests()
+                    .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                    .requestMatchers("/status", "/images/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
-                .formLogin(withDefaults())
+                .formLogin()
+                    .loginPage("/view/login")
+                    .loginProcessingUrl("/login-process")
+                    .usernameParameter("id")
+                    .passwordParameter("pw")
+                    .defaultSuccessUrl("/view/dashboard", true)
+                    .permitAll()
+                .and()
                 .logout(withDefaults());
 
         return http.build();
