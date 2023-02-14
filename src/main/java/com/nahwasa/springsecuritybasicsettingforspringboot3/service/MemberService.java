@@ -19,4 +19,12 @@ public class MemberService {
     public Optional<Member> findOne(String userId) {
         return repository.findByUserid(userId);
     }
+
+    public boolean isValidMember(String userId, String password) {
+        Optional<Member> member = findOne(userId);
+        if (member.isPresent()) {
+            return member.get().getPw().equals(password);
+        }
+        return false;
+    }
 }
