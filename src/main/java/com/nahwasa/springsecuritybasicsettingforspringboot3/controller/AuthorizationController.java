@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthorizationController {
-
     private final RegisterMemberService registerMemberService;
 
     public AuthorizationController(RegisterMemberService registerMemberService) {
         this.registerMemberService = registerMemberService;
     }
-
 
     @PostMapping("/join")
     public ResponseEntity<String> join(@RequestBody MemberJoinDto dto) {
